@@ -15,8 +15,11 @@ function computerPlay() {
   return computerPlay;
 }
 
-function playRound(playerSelection, computerSelection) {}
-const playerSelection = "rock";
-const computerSelection = computerPlay();
+function playRound(playerSelection, computerPlay) {
+  if (playerSelection == "rock" && computerPlay == "scissors")
+    return "You Win! Rock beats scissors!";
+    else if (playerSelection == "paper" && computerPlay == "scissors" 
+    
+}
 
 console.log(playRound(playerSelection, computerPlay));
