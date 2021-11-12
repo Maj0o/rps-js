@@ -1,5 +1,5 @@
 function playerSelection() {
-  let playerSelection = prompt("Pick your choice! Rock, Paper or Scissors!");
+  const playerSelection = prompt("Pick your choice! Rock, Paper or Scissors!");
   return playerSelection.toLowerCase();
 }
 
@@ -16,10 +16,34 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerPlay) {
+  //Rock options
   if (playerSelection == "rock" && computerPlay == "scissors")
     return "You Win! Rock beats scissors!";
-    else if (playerSelection == "paper" && computerPlay == "scissors" 
-    
+  else if (playerSelection == "rock" && computerPlay == "rock")
+    return "You Tied!";
+  else if (playerSelection == "rock" && computerPlay == "paper")
+    return "You Lost! Paper beats rock!";
+  //Paper options
+  else if (playerSelection == "paper" && computerPlay == "rock")
+    return "You Win! Paper beats rock!";
+  else if (playerSelection == "paper" && computerPlay == "paper")
+    return "You Tied!";
+  else if (playerSelection == "paper" && computerPlay == "scissors")
+    return "You Lost! Scissors beats paper!";
+  //Scissor options
+  else if (playerSelection == "scissors" && computerPlay == "rock")
+    return "You lost! Rock beats scissors!";
+  else if (playerSelection == "scissors" && computerPlay == "scissors")
+    return "You Tied!";
+  else playerSelection == "scissors" && computerPlay == "paper";
+  return "You Lost! Scissors beats paper!";
 }
 
-console.log(playRound(playerSelection, computerPlay));
+function game() {
+  for (let i = 0; i < 5; i++) {
+    const result = prompt(playRound(playerSelection(), computerPlay()));
+  }
+}
+
+
+console.log(game());
