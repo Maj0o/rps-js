@@ -1,9 +1,9 @@
-function playerSelection() {
-  const playerSelection = prompt("Pick your choice! Rock, Paper or Scissors!");
+let playerSelection = () => {
+  let playerSelection = prompt("Pick your choice! Rock, Paper or Scissors!");
   return playerSelection.toLowerCase();
-}
+};
 
-function computerPlay() {
+let computerPlay = () => {
   let computerPlay = Math.floor(Math.random() * 3 + 1);
   if (computerPlay === 1) {
     computerPlay = "rock";
@@ -13,9 +13,9 @@ function computerPlay() {
     computerPlay = "scissors";
   }
   return computerPlay;
-}
+};
 
-function playRound(playerSelection, computerPlay) {
+let playRound = (playerSelection, computerPlay) => {
   //Rock options
   if (playerSelection == "rock" && computerPlay == "scissors")
     return "You Win! Rock beats scissors!";
@@ -37,13 +37,10 @@ function playRound(playerSelection, computerPlay) {
     return "You Tied!";
   else playerSelection == "scissors" && computerPlay == "paper";
   return "You Lost! Scissors beats paper!";
-}
+};
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    const result = prompt(playRound(playerSelection(), computerPlay()));
-  }
-}
+let game = () => {
+  for (let i = 0; i < 5; i++);
+};
 
-
-console.log(game());
+console.log(game(i));
