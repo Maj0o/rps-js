@@ -3,44 +3,56 @@ let playerSelection = () => {
   return playerSelection.toLowerCase();
 };
 
-let computerPlay = () => {
-  let computerPlay = Math.floor(Math.random() * 3 + 1);
-  if (computerPlay === 1) {
-    computerPlay = "rock";
-  } else if (computerPlay === 2) {
-    computerPlay = "paper";
+const computerPlay = () => {
+  let number = Math.floor(Math.random() * 3) + 1;
+  if (number === 1) {
+    return "Rock";
+  } else if (number === 2) {
+    return "Paper";
   } else {
-    computerPlay = "scissors";
+    return "Scissors";
   }
-  return computerPlay;
 };
 
-let playRound = (playerSelection, computerPlay) => {
-  //Rock options
-  if (playerSelection == "rock" && computerPlay == "scissors")
-    return "You Win! Rock beats scissors!";
-  else if (playerSelection == "rock" && computerPlay == "rock")
-    return "You Tied!";
-  else if (playerSelection == "rock" && computerPlay == "paper")
-    return "You Lost! Paper beats rock!";
-  //Paper options
-  else if (playerSelection == "paper" && computerPlay == "rock")
-    return "You Win! Paper beats rock!";
-  else if (playerSelection == "paper" && computerPlay == "paper")
-    return "You Tied!";
-  else if (playerSelection == "paper" && computerPlay == "scissors")
-    return "You Lost! Scissors beats paper!";
-  //Scissor options
-  else if (playerSelection == "scissors" && computerPlay == "rock")
-    return "You lost! Rock beats scissors!";
-  else if (playerSelection == "scissors" && computerPlay == "scissors")
-    return "You Tied!";
-  else playerSelection == "scissors" && computerPlay == "paper";
-  return "You Lost! Scissors beats paper!";
-};
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection == "rock") {
+    if (computerSelection === "Scissors") {
+      playerScore++;
 
-let game = () => {
-  for (let i = 0; i < 5; i++);
-};
+      return `You Win! Rock breaks Scissors.`;
+    }
+    if (computerSelection === "Paper") {
+      computerScore++;
 
-console.log(game(i));
+      return `You Lose! Paper covers rock.`;
+    }
+  } else if (playerSelection == "paper") {
+    if (computerSelection === "Scissors") {
+      computerScore++;
+
+      return `You Lose! Scissors cuts Paper.`;
+    }
+    if (computerSelection === "Rock") {
+      playerScore++;
+
+      return `You Win! Paper covers rock.`;
+    }
+  } else if (playerSelection == "scissors") {
+    if (computerSelection === "Rock") {
+      computerScore++;
+
+      return `You Lose! Rock breaks Scissors.`;
+    }
+    if (computerSelection === "Paper") {
+      playerScore++;
+
+      return `You Win! Scissors cuts Paper.`;
+    }
+  }
+
+  return `Draw! Please try Again!`;
+}
+
+const game = () => {};
+
+console.log(playRound(playerSelection(), computerPlay()));
