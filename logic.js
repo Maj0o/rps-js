@@ -15,6 +15,9 @@ const computerPlay = () => {
 };
 
 function playRound(playerSelection, computerSelection) {
+  let playerScore = 0;
+  let computerScore = 0;
+
   if (playerSelection == "rock") {
     if (computerSelection === "Scissors") {
       playerScore++;
@@ -53,6 +56,10 @@ function playRound(playerSelection, computerSelection) {
   return `Draw! Please try Again!`;
 }
 
-const game = () => {};
-
 console.log(playRound(playerSelection(), computerPlay()));
+
+// const game = () => {
+//   for (let i = 0; i < 5; i++);
+// };
+
+// console.log(game);

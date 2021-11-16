@@ -4,6 +4,15 @@
     margin: 0;
   }
 
+  .scoreboard {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 1em;
+    min-height: 20vh;
+    color: white;
+    background-color: hsl(254, 57%, 30%);
+  }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -12,7 +21,7 @@
   .image {
     object-fit: contain;
     min-width: 300px;
-    min-height: 50%;
+    min-height: 30%;
   }
   .button {
     text-align: center;
