@@ -14,47 +14,45 @@ const computerPlay = () => {
   }
 };
 
-function playRound(playerSelection, computerSelection) {
-  let playerScore = 0;
-  let computerScore = 0;
+const playRound = (playerSelection, computerSelection) => {
+  let playerScore = document.getElementById('playerScore');
+  let computerScore = document.getElementById('playerScore');
 
   if (playerSelection == "rock") {
     if (computerSelection === "Scissors") {
-      playerScore++;
-
       return `You Win! Rock breaks Scissors.`;
     }
     if (computerSelection === "Paper") {
-      computerScore++;
+      
 
       return `You Lose! Paper covers rock.`;
     }
   } else if (playerSelection == "paper") {
     if (computerSelection === "Scissors") {
-      computerScore++;
+     
 
       return `You Lose! Scissors cuts Paper.`;
     }
     if (computerSelection === "Rock") {
-      playerScore++;
+      
 
       return `You Win! Paper covers rock.`;
     }
   } else if (playerSelection == "scissors") {
     if (computerSelection === "Rock") {
-      computerScore++;
+      
 
       return `You Lose! Rock breaks Scissors.`;
     }
     if (computerSelection === "Paper") {
-      playerScore++;
+      
 
       return `You Win! Scissors cuts Paper.`;
     }
-  }
 
-  return `Draw! Please try Again!`;
-}
+};
+
+const game = () => {};
 
 console.log(playRound(playerSelection(), computerPlay()));
 

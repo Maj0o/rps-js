@@ -7,8 +7,9 @@
   .scoreboard {
     display: flex;
     flex-flow: column wrap;
+    padding: 0.3em;
     gap: 1em;
-    min-height: 20vh;
+    min-height: 15vh;
     color: white;
     background-color: hsl(254, 57%, 30%);
   }
