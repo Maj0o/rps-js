@@ -8,6 +8,15 @@ const PAPER = "paper";
 const SCISSORS = "scissors";
 const ROCK = "rock";
 
+const scoreBoard = () => {
+  const computerScoreDisplay = document.getElementById("computerScore");
+  const playerScoreDisplay = document.getElementById("playerScore");
+  const amountOfRoundsDisplay = document.getElementById("amountOfRounds");
+  computerScoreDisplay.innerText = "CPU: " + computerScore;
+  playerScoreDisplay.innerText = "Player: " + playerScore;
+  amountOfRoundsDisplay.innerText = "Rounds: " + amountOfRounds;
+};
+
 const computerPlay = () => {
   let number = Math.floor(Math.random() * 3) + 1;
   if (number === 1) {
@@ -25,7 +34,6 @@ let playerSelection = () => {
 };
 
 const playRound = (playerSelection, computerPlay) => {
-  scoreBoard();
   //Rock options
   amountOfRounds++;
   if (playerSelection == ROCK && computerPlay == SCISSORS) {
@@ -56,13 +64,4 @@ const playRound = (playerSelection, computerPlay) => {
   return tieMessage;
 };
 
-const scoreBoard = () => {
-  const computerScoreDisplay = document.getElementById("computerScore");
-  computerScoreDisplay.innerText = "CPU: " + computerScore;
-  const playerScoreDisplay = document.getElementById("playerScore");
-  playerScoreDisplay.innerText = "Player: " + playerScore;
-  const amountOfRoundsDisplay = document.getElementById("amountOfRounds");
-  amountOfRoundsDisplay.innerText = "Rounds: " + amountOfRounds;
-};
-
-console.log(playRound(playerSelection(), computerPlay()));
+const game = () => console.log(game);
