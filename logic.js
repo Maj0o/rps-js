@@ -1,3 +1,10 @@
+let playerScore = 0;
+let computerScore = 0;
+let amountOfRounds = 0;
+let winMessage = "You win!";
+let lossMessage = "You lose!";
+let tieMessage = "It's a tie!";
+
 let playerSelection = () => {
   let playerSelection = prompt("Pick your choice! Rock, Paper or Scissors!");
   return playerSelection.toLowerCase();
@@ -14,50 +21,25 @@ const computerPlay = () => {
   }
 };
 
-const playRound = (playerSelection, computerSelection) => {
-  let playerScore = document.getElementById('playerScore');
-  let computerScore = document.getElementById('playerScore');
-
-  if (playerSelection == "rock") {
-    if (computerSelection === "Scissors") {
-      return `You Win! Rock breaks Scissors.`;
-    }
-    if (computerSelection === "Paper") {
-      
-
-      return `You Lose! Paper covers rock.`;
-    }
-  } else if (playerSelection == "paper") {
-    if (computerSelection === "Scissors") {
-     
-
-      return `You Lose! Scissors cuts Paper.`;
-    }
-    if (computerSelection === "Rock") {
-      
-
-      return `You Win! Paper covers rock.`;
-    }
-  } else if (playerSelection == "scissors") {
-    if (computerSelection === "Rock") {
-      
-
-      return `You Lose! Rock breaks Scissors.`;
-    }
-    if (computerSelection === "Paper") {
-      
-
-      return `You Win! Scissors cuts Paper.`;
-    }
-
+const playRound = (playerSelection, computerPlay) => {
+  amountOfRounds++;
+  gameLogic();
 };
 
-const game = () => {};
+const gameLogic = () => {
+  //Rock options
+  if (playerSelection == "rock" && "scissors") {
+    return winMessage;
+  } else if (playerSelection == "rock" && "paper") {
+    return lossMessage;
+  } else if (playerSelection == "rock" && "rock") {
+    return tieMessage;
+  }
+};
 
-console.log(playRound(playerSelection(), computerPlay()));
-
-// const game = () => {
-//   for (let i = 0; i < 5; i++);
-// };
-
-// console.log(game);
+const scoreBoard = () => {
+  const computerScoreDisplay = document.getElementById("computerScore");
+  const playerScoreDisplay = document.getElementById("playerScore");
+  computerScoreDisplay.innerText = computerScore;
+  playerScoreDisplay.innerText = playerScore;
+};
