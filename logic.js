@@ -4,27 +4,29 @@ let amountOfRounds = 0;
 let winMessage = "You win!";
 let lossMessage = "You lose!";
 let tieMessage = "It's a tie!";
-const PAPER = "paper";
-const SCISSORS = "scissors";
-const ROCK = "rock";
+const CHOICES = {
+  PAPER: "paper",
+  SCISSORS: "scissors",
+  ROCK: "rock",
+};
 
-const scoreBoard = () => {
+function scoreBoard() {
   const computerScoreDisplay = document.getElementById("computerScore");
   const playerScoreDisplay = document.getElementById("playerScore");
   const amountOfRoundsDisplay = document.getElementById("amountOfRounds");
   computerScoreDisplay.innerText = "CPU: " + computerScore;
   playerScoreDisplay.innerText = "Player: " + playerScore;
   amountOfRoundsDisplay.innerText = "Rounds: " + amountOfRounds;
-};
+}
 
 const computerPlay = () => {
   let number = Math.floor(Math.random() * 3) + 1;
   if (number === 1) {
-    return ROCK;
+    return CHOICES.ROCK;
   } else if (number === 2) {
-    return PAPER;
+    return CHOICES.PAPER;
   } else {
-    return SCISSORS;
+    return CHOICES.SCISSORS;
   }
 };
 
@@ -35,33 +37,61 @@ let playerSelection = () => {
 
 const playRound = (playerSelection, computerPlay) => {
   //Rock options
-  amountOfRounds++;
-  if (playerSelection == ROCK && computerPlay == SCISSORS) {
+  if (playerSelection == CHOICES.ROCK && computerPlay == CHOICES.SCISSORS) {
     playerScore++;
-    return winMessage;
-  } else if (playerSelection == ROCK && computerPlay == PAPER) {
+    amountOfRounds++;
+    return `${winMessage} ${CHOICES.ROCK} crushes ${CHOICES.SCISSORS}`;
+  } else if (playerSelection == CHOICES.ROCK && computerPlay == CHOICES.PAPER) {
     computerScore++;
-    return lossMessage;
-  } else if (playerSelection == ROCK && computerPlay == ROCK) {
-    return tieMessage;
+    amountOfRounds++;
+    return `${lossMessage} ${CHOICES.PAPER} covers ${CHOICES.ROCK}`;
+  } else if (playerSelection == CHOICES.ROCK && computerPlay == CHOICES.ROCK) {
+    amountOfRounds++;
+    return `${tieMessage} ${CHOICES.ROCK} can't crush ${CHOICES.ROCK}`;
     //Paper options
-  } else if (playerSelection == PAPER && computerPlay == ROCK) {
+  } else if (playerSelection == CHOICES.PAPER && computerPlay == CHOICES.ROCK) {
     playerScore++;
-    return lossMessage;
-  } else if (playerSelection == PAPER && computerPlay == SCISSORS) {
+    amountOfRounds++;
+    return `${winMessage} ${CHOICES.PAPER} covers ${CHOICES.ROCK}`;
+  } else if (
+    playerSelection == CHOICES.PAPER &&
+    computerPlay == CHOICES.SCISSORS
+  ) {
     computerScore++;
-    return lossMessage;
-  } else if (playerSelection == PAPER && computerPlay == PAPER) {
-    return tieMessage;
+    amountOfRounds++;
+    return `${lossMessage} ${CHOICES.PAPER} gets cut by ${CHOICES.SCISSORS}`;
+  } else if (
+    playerSelection == CHOICES.PAPER &&
+    computerPlay == CHOICES.PAPER
+  ) {
+    amountOfRounds++;
+    return `${tieMessage} ${CHOICES.PAPER} can't cover ${CHOICES.PAPER}`;
     //Scissor options
-  } else if (playerSelection == SCISSORS && computerPlay == ROCK) {
+  } else if (
+    playerSelection == CHOICES.SCISSORS &&
+    computerPlay == CHOICES.ROCK
+  ) {
     computerScore++;
-    return lossMessage;
-  } else if (playerSelection == SCISSORS && computerPlay == PAPER) {
+    amountOfRounds++;
+    return `${lossMessage} ${CHOICES.SCISSORS} gets crushed by ${CHOICES.ROCK}`;
+  } else if (
+    playerSelection == CHOICES.SCISSORS &&
+    computerPlay == CHOICES.PAPER
+  ) {
     playerScore++;
-    return winMessage;
-  } else playerSelection == SCISSORS && computerPlay == SCISSORS;
-  return tieMessage;
+    amountOfRounds++;
+    return `${winMessage} ${CHOICES.SCISSORS} cuts ${CHOICES.PAPER}`;
+  } else
+    playerSelection == CHOICES.SCISSORS && computerPlay == CHOICES.SCISSORS;
+  amountOfRounds++;
+  return `${tieMessage} ${CHOICES.SCISSORS} can't cut ${CHOICES.SCISSORS}`;
 };
 
-const game = () => console.log(game);
+function game() {
+  for (let i = 0; i < 5; i++) {
+    playRound(playerSelection(), computerPlay());
+    scoreBoard();
+  }
+}
+
+console.log(game());
