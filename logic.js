@@ -10,16 +10,7 @@ const CHOICES = {
   ROCK: "rock",
 };
 
-function scoreBoard() {
-  const computerScoreDisplay = document.getElementById("computerScore");
-  const playerScoreDisplay = document.getElementById("playerScore");
-  const amountOfRoundsDisplay = document.getElementById("amountOfRounds");
-  computerScoreDisplay.innerText = "CPU: " + computerScore;
-  playerScoreDisplay.innerText = "Player: " + playerScore;
-  amountOfRoundsDisplay.innerText = "Rounds: " + amountOfRounds;
-}
-
-const computerPlay = () => {
+function computerPlay() {
   let number = Math.floor(Math.random() * 3) + 1;
   if (number === 1) {
     return CHOICES.ROCK;
@@ -28,14 +19,14 @@ const computerPlay = () => {
   } else {
     return CHOICES.SCISSORS;
   }
-};
+}
 
 let playerSelection = () => {
   let playerSelection = prompt("Pick your choice! Rock, Paper or Scissors!");
   return playerSelection.toLowerCase();
 };
 
-const playRound = (playerSelection, computerPlay) => {
+function playRound(playerSelection, computerPlay) {
   //Rock options
   if (playerSelection == CHOICES.ROCK && computerPlay == CHOICES.SCISSORS) {
     playerScore++;
@@ -85,13 +76,22 @@ const playRound = (playerSelection, computerPlay) => {
     playerSelection == CHOICES.SCISSORS && computerPlay == CHOICES.SCISSORS;
   amountOfRounds++;
   return `${tieMessage} ${CHOICES.SCISSORS} can't cut ${CHOICES.SCISSORS}`;
-};
+}
+
+function scoreBoard() {
+  const computerScoreDisplay = document.getElementById("computerScore");
+  const playerScoreDisplay = document.getElementById("playerScore");
+  const amountOfRoundsDisplay = document.getElementById("amountOfRounds");
+  computerScoreDisplay.innerText = "CPU: " + computerScore;
+  playerScoreDisplay.innerText = "Player: " + playerScore;
+  amountOfRoundsDisplay.innerText = "Rounds: " + amountOfRounds;
+}
 
 function game() {
   for (let i = 0; i < 5; i++) {
-    playRound(playerSelection(), computerPlay());
+    console.log(playRound(playerSelection(), computerPlay()));
     scoreBoard();
+    // playRound(playerSelection(), computerPlay());
+    // scoreBoard();
   }
 }
-
-console.log(game());
