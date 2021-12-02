@@ -93,8 +93,6 @@ function playRound(playerSelection, computerPlay) {
 function scoreBoard() {
   const computerScoreDisplay = document.getElementById("computerScore");
   const playerScoreDisplay = document.getElementById("playerScore");
-  const amountOfRoundsDisplay = document.getElementById("amountOfRounds");
   computerScoreDisplay.innerText = `Computer: ${computerScore}`;
   playerScoreDisplay.innerText = `Player: ${playerScore}`;
-  amountOfRoundsDisplay.innerText = `Amount of rounds played: ${amountOfRounds}`;
 }
