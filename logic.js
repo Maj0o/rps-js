@@ -34,7 +34,7 @@ function computerPlay() {
 }
 
 let playerSelection = () => {
-  let playerSelection = prompt("Pick your choice! Rock, Paper or Scissors!");
+  let playerSelection = prompt("Pick your choice: Rock, Paper or Scissors!");
   return playerSelection.toLowerCase();
 };
 
@@ -94,25 +94,7 @@ function scoreBoard() {
   const computerScoreDisplay = document.getElementById("computerScore");
   const playerScoreDisplay = document.getElementById("playerScore");
   const amountOfRoundsDisplay = document.getElementById("amountOfRounds");
-  computerScoreDisplay.innerText = "CPU: " + computerScore;
-  playerScoreDisplay.innerText = "Player: " + playerScore;
-  amountOfRoundsDisplay.innerText = "Rounds: " + amountOfRounds;
+  computerScoreDisplay.innerText = `Computer: ${computerScore}`;
+  playerScoreDisplay.innerText = `Player: ${playerScore}`;
+  amountOfRoundsDisplay.innerText = `Amount of rounds played: ${amountOfRounds}`;
 }
-
-function game() {
-  for (let i = 0; i < 5; i++) {
-    console.log(playRound(playerSelection(), computerPlay()));
-    scoreBoard();
-    if (playerScore === 3) {
-      resetScore();
-      return alert(`${MESSAGES.returnWinner}`);
-    } else if (computerScore === 3) {
-      resetScore();
-      return alert(`${MESSAGES.returnLoser}`);
-    } else {
-      game();
-    }
-  }
-}
-
-game();
