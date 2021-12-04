@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <script defer src="logic.js"></script>
+    <script src="logic.js" defer></script>
   </head>
   <body>
     <main class="content">
@@ -31,14 +31,16 @@
           class="image-scissors"
         />
       </div>
-      <h5 class="description">
-        Click a button to start playing, it's a best of 5!
-      </h5>
-      <div class="displayresult"></div>
-      <div class="scoreboard">
-        <h2 id="playerscore">Player</h2>
-        <h2 id="computerscore">Computer:</h2>
+      <div class="description">
+        <div class="button-rock">Rock</div>
+        <div class="button-paper">Paper</div>
+        <div class="button-scissors">Scissors</div>
       </div>
+      <div class="scoreboard">
+        <h2 id="playerScore"></h2>
+        <h2 id="computerScore"></h2>
+      </div>
+      <div id="playRoundResult"></div>
     </main>
     <!-- <a href="https://icons8.com/icon/9FSQ5judlnAN/rock">Rock icon by Icons8</a>
     <a href="https://icons8.com/icon/26243/paper">Paper icon by Icons8</a>

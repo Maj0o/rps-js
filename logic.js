@@ -1,6 +1,7 @@
 let playerScore = 0;
 let computerScore = 0;
 let amountOfRounds = 0;
+let playRoundResult = "";
 
 const MESSAGES = {
   winMessage: "You win!",
@@ -34,7 +35,7 @@ function computerPlay() {
 }
 
 let playerSelection = () => {
-  let playerSelection = prompt("Pick your choice: Rock, Paper or Scissors!");
+  let playerSelection = rockButtonEvent();
   return playerSelection.toLowerCase();
 };
 
@@ -92,18 +93,19 @@ function playScissors(playerSelection, computerPlay) {
   return `${MESSAGES.tieMessage} ${CHOICES.SCISSORS} can't cut ${CHOICES.SCISSORS}`;
 }
 
-console.log(playScissors(playerSelection(), computerPlay()));
+const scoreBoard = () => {
+  const computerScoreDisplay = document.getElementById("computerScore");
+  const playerScoreDisplay = document.getElementById("playerScore");
+  computerScoreDisplay.innerText = `Computer: ${computerScore}`;
+  playerScoreDisplay.innerText = `Player: ${playerScore}`;
+};
 
-// function scoreBoard() {
-//   const computerScoreDisplay = document.getElementById("computerscore");
-//   const playerScoreDisplay = document.getElementById("playerscore");
-//   computerScoreDisplay.innerText = `Computer: ${computerScore}`;
-//   playerScoreDisplay.innerText = `Player: ${playerScore}`;
-//
+function rockButtonEvent() {
+  document
+    .getElementsByClassName("button-rock")
+    .addEventListener("click", function () {
+      document.getElementById("playRoundResult").innerText = "Test";
+    });
+}
 
-// function scoreBoard() {
-//   const computerScoreDisplay = document.getElementById("computerscore");
-//   const playerScoreDisplay = document.getElementById("playerscore");
-//   computerScoreDisplay.innerText = `Computer: ${computerScore}`;
-//   playerScoreDisplay.innerText = `Player: ${playerScore}`;
-//
+playRock(playerSelection(), computerPlay(), rockButtonEvent());
