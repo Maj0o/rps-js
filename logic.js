@@ -91,8 +91,11 @@ function playRound(playerSelection, computerPlay) {
 }
 
 function scoreBoard() {
-  const computerScoreDisplay = document.getElementById("computerScore");
-  const playerScoreDisplay = document.getElementById("playerScore");
+  const computerScoreDisplay = document.getElementById("computerscore");
+  const playerScoreDisplay = document.getElementById("playerscore");
   computerScoreDisplay.innerText = `Computer: ${computerScore}`;
   playerScoreDisplay.innerText = `Player: ${playerScore}`;
 }
+
+console.log(playRound(playerSelection(), computerPlay()));
+scoreBoard();
