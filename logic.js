@@ -1,111 +1,83 @@
 let playerScore = 0;
 let computerScore = 0;
-let amountOfRounds = 0;
-let playRoundResult = "";
+let result = document.querySelector("#displayresult");
+let buttonRock = document.querySelector("#rock");
+let buttonPaper = document.querySelector("#paper");
+let buttonScissors = document.querySelector("#scissors");
+let playerScoreTag = document.querySelector(".playerScore");
+let computerScoreTag = document.querySelector(".computerScore");
 
-const MESSAGES = {
-  winMessage: "You win!",
-  lossMessage: "You lose!",
-  tieMessage: "It's a tie!",
-  returnWinner: "You won, congratulations!",
-  returnLoser: "You lost, try again!",
-};
-
-const CHOICES = {
-  PAPER: "paper",
-  SCISSORS: "scissors",
-  ROCK: "rock",
-};
-
-function resetScore() {
-  playerScore = 0;
-  computerScore = 0;
-  amountOfRounds = 0;
-}
-
-function computerPlay() {
+const computerPlay = () => {
   let number = Math.floor(Math.random() * 3) + 1;
   if (number === 1) {
-    return CHOICES.ROCK;
+    return "rock";
   } else if (number === 2) {
-    return CHOICES.PAPER;
+    return "paper";
   } else {
-    return CHOICES.SCISSORS;
+    return "scissors";
   }
-}
-
-let playerSelection = () => {
-  let playerSelection = rockButtonEvent();
-  return playerSelection.toLowerCase();
 };
 
-function playRock(playerSelection, computerPlay) {
-  if (playerSelection == CHOICES.ROCK && computerPlay == CHOICES.SCISSORS) {
-    playerScore++;
-    amountOfRounds++;
-    return `${MESSAGES.winMessage} ${CHOICES.ROCK} crushes ${CHOICES.SCISSORS}`;
-  } else if (playerSelection == CHOICES.ROCK && computerPlay == CHOICES.PAPER) {
+const playRound = (playerChoice, computerChoice) => {
+  if (playerChoice === computerChoice) {
+    result.textContent = `It's a draw!`;
+  } else if (playerChoice == "rock" && computerChoice == "paper") {
     computerScore++;
-    amountOfRounds++;
-    return `${MESSAGES.lossMessage} ${CHOICES.PAPER} covers ${CHOICES.ROCK}`;
-  } else if (playerSelection == CHOICES.ROCK && computerPlay == CHOICES.ROCK) {
-    amountOfRounds++;
-    return `${MESSAGES.tieMessage} ${CHOICES.ROCK} can't crush ${CHOICES.ROCK}`;
+    result.textContent = `You lose, ${computerChoice} covers ${playerChoice}!`;
+  } else if (playerChoice == "rock" && computerChoice == "scissors") {
+    playerScore++;
+    result.textContent = `You win, ${playerChoice} crushes ${computerChoice}!`;
+  } else if (playerChoice == "paper" && computerChoice == "rock") {
+    playerScore++;
+    result.textContent = `You win, ${playerChoice} covers ${computerChoice}!`;
+  } else if (playerChoice == "paper" && computerChoice == "scissors") {
+    computerScore++;
+    result.textContent = `You lose, ${playerChoice} gets cut by ${computerChoice}!`;
+  } else if (playerChoice == "scissors" && computerChoice == "rock") {
+    computerScore++;
+    result.textContent = `You lose, ${playerChoice} gets crushed by ${computerChoice}!`;
+  } else if (playerChoice == "scissors" && computerChoice == "paper") {
+    playerScore++;
+    result.textContent = `You win, ${playerChoice} cuts ${computerChoice}!`;
   }
-}
-
-function playPaper(playerSelection, computerPlay) {
-  if (playerSelection == CHOICES.PAPER && computerPlay == CHOICES.ROCK) {
-    playerScore++;
-    amountOfRounds++;
-    return `${MESSAGES.winMessage} ${CHOICES.PAPER} covers ${CHOICES.ROCK}`;
-  } else if (
-    playerSelection == CHOICES.PAPER &&
-    computerPlay == CHOICES.SCISSORS
-  ) {
-    computerScore++;
-    amountOfRounds++;
-    return `${MESSAGES.lossMessage} ${CHOICES.PAPER} gets cut by ${CHOICES.SCISSORS}`;
-  } else if (
-    playerSelection == CHOICES.PAPER &&
-    computerPlay == CHOICES.PAPER
-  ) {
-    amountOfRounds++;
-    return `${MESSAGES.tieMessage} ${CHOICES.PAPER} can't cover ${CHOICES.PAPER}`;
-  }
-}
-
-function playScissors(playerSelection, computerPlay) {
-  if (playerSelection == CHOICES.SCISSORS && computerPlay == CHOICES.ROCK) {
-    computerScore++;
-    amountOfRounds++;
-    return `${MESSAGES.lossMessage} ${CHOICES.SCISSORS} gets crushed by ${CHOICES.ROCK}`;
-  } else if (
-    playerSelection == CHOICES.SCISSORS &&
-    computerPlay == CHOICES.PAPER
-  ) {
-    playerScore++;
-    amountOfRounds++;
-    return `${MESSAGES.winMessage} ${CHOICES.SCISSORS} cuts ${CHOICES.PAPER}`;
-  } else
-    playerSelection == CHOICES.SCISSORS && computerPlay == CHOICES.SCISSORS;
-  amountOfRounds++;
-  return `${MESSAGES.tieMessage} ${CHOICES.SCISSORS} can't cut ${CHOICES.SCISSORS}`;
-}
-
-const scoreBoard = () => {
-  const computerScoreDisplay = document.getElementById("computerScore");
-  const playerScoreDisplay = document.getElementById("playerScore");
-  computerScoreDisplay.innerText = `Computer: ${computerScore}`;
-  playerScoreDisplay.innerText = `Player: ${playerScore}`;
 };
 
-function rockButtonEvent() {
-  document
-    .getElementsByClassName("button-rock")
-    .addEventListener("click", function () {
-      document.getElementById("playRoundResult").innerText = "Test";
-    });
+//To Do (After score of 5 reset the rounds!)
+
+function score() {
+  if (playerScore >= 5) {
+    result.textContent = "Congratulations, you won :)";
+    window.location.reload();
+  } else if (computerScore >= 5) {
+    result.textContent = "Try again! You lost :(";
+    window.location.reload();
+  }
 }
 
-playRock(playerSelection(), computerPlay(), rockButtonEvent());
+const addEventListener = () => {
+  document.querySelector("#rock").addEventListener("click", function () {
+    playRound("rock", computerPlay());
+    score();
+
+    playerScoreTag.textContent = playerScore;
+    computerScoreTag.textContent = computerScore;
+  });
+  // Paper Button
+  document.querySelector("#paper").addEventListener("click", function () {
+    playRound("paper", computerPlay());
+    score();
+
+    playerScoreTag.textContent = playerScore;
+    computerScoreTag.textContent = computerScore;
+  });
+  // Scissors Button
+  document.querySelector("#scissors").addEventListener("click", function () {
+    playRound("scissors", computerPlay());
+    score();
+
+    playerScoreTag.textContent = playerScore;
+    computerScoreTag.textContent = computerScore;
+  });
+};
+
+addEventListener();
