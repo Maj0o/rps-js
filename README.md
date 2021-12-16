@@ -1,6 +1,6 @@
 # RPS-JS
 
-I've set path to complete The Odin Project which steered me into making this game. It taught me the following:
+I've made this game following the online curricilum of The Odin Project. It taught me the following:
 - Forking and creating a branch using git;
 - Creating a simple UI for a game;
 - Using eventlisteners;
