@@ -7,3 +7,5 @@ I've made this game following the online curricilum of The Odin Project. It taug
 - How to effectively refactor code;
 - Working with playerinput.
 
+You can play it here: https://maj0o.github.io/rps-js/
+
