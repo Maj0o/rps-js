@@ -1,11 +1,6 @@
 let playerScore = 0;
 let computerScore = 0;
 let result = document.querySelector("#displayresult");
-let buttonRock = document.querySelector("#rock");
-let buttonPaper = document.querySelector("#paper");
-let buttonScissors = document.querySelector("#scissors");
-let playerScoreTag = document.querySelector(".playerScore");
-let computerScoreTag = document.querySelector(".computerScore");
 
 const computerPlay = () => {
   let number = Math.floor(Math.random() * 3) + 1;
@@ -42,19 +37,24 @@ const playRound = (playerChoice, computerChoice) => {
   }
 };
 
-//To Do (After score of 5 reset the rounds!)
-
 function score() {
   if (playerScore >= 5) {
-    result.textContent = "Congratulations, you won :)";
-    window.location.reload();
+    result.textContent = "Congratulations, you win!";
+    playerScore = 0;
+    computerScore = 0;
   } else if (computerScore >= 5) {
-    result.textContent = "Try again! You lost :(";
-    window.location.reload();
+    result.textContent = "You lose! Try again :(";
+    playerScore = 0;
+    computerScore = 0;
   }
 }
 
 const addEventListener = () => {
+  let playerScoreTag = document.querySelector(".playerScore");
+  let computerScoreTag = document.querySelector(".computerScore");
+  let buttonRock = document.querySelector("#rock");
+  let buttonPaper = document.querySelector("#paper");
+  let buttonScissors = document.querySelector("#scissors");
   document.querySelector("#rock").addEventListener("click", function () {
     playRound("rock", computerPlay());
     score();
