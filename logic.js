@@ -40,10 +40,13 @@ const playRound = (playerChoice, computerChoice) => {
 function score() {
   if (playerScore >= 5) {
     result.textContent = "Congratulations, you win!";
+    result.style.backgroundColor = "green";
+    result.style.opacity = 0.75;
     playerScore = 0;
     computerScore = 0;
   } else if (computerScore >= 5) {
     result.textContent = "You lose! Try again :(";
+    result.style.backgroundColor = "red";
     playerScore = 0;
     computerScore = 0;
   }
